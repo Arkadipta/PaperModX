@@ -31,6 +31,8 @@
 }
 
 .entry-content {
+    text-align: justify;
+    text-justify: inter-word;
     margin: 8px 0;
     color: var(--secondary);
     font-size: 14px;

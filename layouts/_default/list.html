@@ -33,7 +33,9 @@
 {{- $pages := .Pages }}
 {{- if .IsHome }}
   {{/* get all regular pages instead of pages in a section */}}
-  {{- $pages = where site.RegularPages "Section" "in" site.Params.mainSections }}
+  <!-- {{- $pages = where site.RegularPages "Section" "in" site.Params.mainSections }} -->
+  {{- $pages = where site.Pages "Type" "in" site.Params.mainSections }}
+  {{- $pages = where $pages "Params.hiddenInHomeList" "!=" "true"  }}
 {{- end }}
 {{- $pages = where $pages "Params.hidden" "!=" true }}
 
@@ -68,7 +70,7 @@
     <h2>
       {{- .Title }}
       {{- if .Draft }}<sup><span class="entry-isdraft">&nbsp;&nbsp;[Draft]</span></sup>{{- end }}
-      {{- if .Weight }}<sup><span class="entry-isdraft">&nbsp;&nbsp;[Pinned]</span></sup>{{- end }}
+      {{- if .Weight }}<sup><span class="entry-isdraft">&nbsp;&nbsp;</span></sup>{{- end }}
     </h2>
   </header>
   {{- if (ne (.Param "hideSummary") true) }}
